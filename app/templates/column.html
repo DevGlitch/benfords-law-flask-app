@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Analysis
+{% endblock %}
+
+{% block card_header %}
+    Benford's Law - Analysis
+{% endblock %}
+
+{% block card_title %}
+    Which column would you like to analyze?
+{% endblock %}
+
+{% block card_content %}
+    <!-- Form -->
+    <form action="/analyze" method="POST">
+        <div class="form-group mb-3">
+            <!-- Select Column Dropdown -->
+            <div class="form-floating my-3">
+            <select name="selected_column" class="form-select">
+                {% for column in columns %}
+                    <option value="{{ column }}">{{ column }}</option>
+                {% endfor %}
+            </select>
+            <label for="floatingSelect">Choose column you would like to analyze:</label>
+            </div>
+        </div>
+        <!-- Flash Messages -->
+        {% include 'flash_messages.html' %}
+        <!-- Buttons Cancel and Run Analysis -->
+        <div class="d-flex justify-content-between mt-4">
+            <a href="{{ url_for('restart') }}" class="btn btn-outline-danger"><i class="far fa-times-circle"></i>&emsp;Cancel</a>
+            <button type="submit" class="btn btn-success"><i class="fas fa-play"></i>&emsp;Run Analysis</button>
+        </div>
+    </form>
+    <!-- End Form -->
+{% endblock %}

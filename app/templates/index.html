@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Analysis
+{% endblock %}
+
+{% block card_header %}
+    Benford's Law - Analysis
+{% endblock %}
+
+{% block card_title %}
+    What is Benford's Law?
+{% endblock %}
+
+{% block card_text %}
+    In 1938, Frank Benford published a paper showing the distribution of the leading digit in many disparate sources
+    of data. In all these sets of data, the number 1 was the leading digit about 30% of the time. Benford’s law has
+    been found to apply to population numbers, death rates, lengths of rivers, mathematical distributions given by
+    some power law, and physical constants like atomic weights and specific heats.<hr><i>In this application, we
+    will be analyzing the leading digit of a given column in the CSV file you select.</i>
+{% endblock %}
+
+{% block card_content %}
+    <!-- Form -->
+    <form method="POST" action="/upload" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <div class="form-group mb-3 my-5">
+            <label for="csvfile" class="form-label">Select a CSV file:</label>
+            <input type="file" class="form-control" id="csvfile" name="csvfile">
+            <div class="form-floating my-3">
+                <select class="form-select" id="floatingSelect" name="delimiter">
+                    <option selected>Select...</option>
+                    <option value=",">Comma ,</option>
+                    <option value=";">Semicolon ;</option>
+                    <option value="|">Pipe |</option>
+                    <option value="\t">Space</option>
+                </select>
+                <label for="floatingSelect">Choose the delimiter used in the CSV file:</label>
+            </div>
+        </div>
+        <!-- Flash Messages -->
+        {% include 'flash_messages.html' %}
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary my-3"><i class="fas fa-upload"></i>&emsp;Upload</button>
+    </form>
+    <!-- End File Input -->
+{% endblock %}

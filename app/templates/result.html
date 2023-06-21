@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block card_header %}
+    Benford's Law - Analysis
+{% endblock %}
+
+{% block card_title %}
+    <b>Analysis Results</b>
+{% endblock %}
+
+{% block card_text %}
+    <!-- D Statistic -->
+    <h5 class="mt-4">D Statistic = {{ d_statistic }}</h5>
+    <!-- Interpretation -->
+    <h5 class="mt-4">Interpretation:</h5>
+    {{ interpretation }}
+{% endblock %}
+
+{% block card_content %}
+    <!-- Distribution Plot -->
+    <img src="data:image/png;base64,{{ plot }}" alt="Bedford's Law Plot">
+    <!-- D Statistic Thresholds Table -->
+    <h5 class="mt-5">Benford's Law Thresholds:</h5>
+    <table class="table center-table table-striped table-sm">
+      <thead class="thead-light">
+        <tr>
+          <th>D Statistic Range</th>
+          <th>Interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0 to 0.01</td>
+          <td>Small D statistic</td>
+        </tr>
+        <tr>
+          <td>0.01 to 0.2</td>
+          <td>Moderate D statistic</td>
+        </tr>
+        <tr>
+          <td>Above 0.2</td>
+          <td>Large D statistic</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Run Another Analysis Button -->
+    <form action="/restart" method="GET" class="mt-5 mb-2">
+        <button type="submit" class="btn btn-secondary"><i class="fas fa-redo"></i>&emsp;Start New Analysis</button>
+    </form>
+{% endblock %}
